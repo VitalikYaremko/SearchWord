@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+<style>
+    body {
+        background: url(/Content/st-patricks.jpg) no-repeat fixed center center;
+        background-size: cover;
+    }
+
+    div.s {
+        opacity: 0.9;
+        filter: alpha(opaciti=90);
+        margin-top: 15px;
+    }
+</style>
+
+<div class="s">
+    <div class="jumbotron">
+        <table cellpadding="15">
+            <tr>
+                <td>
+                    @using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="form-group">
+                            <label for="text" >What word to look for?</label>
+                            <input class="form-control" type="text" name="word" /><br />
+                            <input class="btn btn-default " type="file" name="upload" /><br />
+                            <input class="form-control" type="submit" value="load" />
+                        </div>
+ 
+                    }
+                </td>
+                <td>
+                    <a style="color:darkblue; padding-left:20px">@ViewBag.Message</a>
+                </td>
+            </tr>
+        </table>
+ 
+        <ol>
+            @foreach (var d in ViewBag.Sentences)
+            {
+                <li><p>@d.SentenceData (Entry { @d.Amount })</p></li>
+                
+            }
+        </ol>
+    </div>
+</div>
+
+
